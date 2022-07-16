@@ -1,12 +1,13 @@
-import { trainingData } from './trainingData.js';
+import { trainingDataOld } from './trainingData.js';
 const net = new brain.NeuralNetwork();
 
+const trainingData = [...trainingDataOld];
 let randColor;
 let colorValue;
 let rgb;
 
+const unique = [];
 const trainData = () => {
-  const unique = [];
   trainingData.filter((item) => {
     const itemStr = JSON.stringify(item);
     let isFound = false;
@@ -16,18 +17,13 @@ const trainData = () => {
       }
     });
     unique.push(item);
-    return !isFound && item;
+    return !isFound ? item : null;
   });
   net.train(trainingData);
 };
 trainData();
 
-const trainModel = () => {
-  randColor = {
-    r: Math.random(),
-    g: Math.random(),
-    b: Math.random(),
-  };
+const getOutput = (randColor) => {
   const output = net.run(randColor);
   const expected = document.querySelector('#expected');
   const colorCode = document.querySelector('#color-code');
@@ -43,8 +39,13 @@ const trainModel = () => {
   colorCode.innerText = expectedColorText;
 };
 
-const getColorValue = () => {
-  return document.querySelector('#color-picker').value;
+const trainModel = () => {
+  randColor = {
+    r: Math.random(),
+    g: Math.random(),
+    b: Math.random(),
+  };
+  getOutput(randColor);
 };
 
 function hexToRgb(
@@ -60,9 +61,24 @@ const getColor = () => {
 };
 
 const setColor = () => {
-  const r = 1 - rgb[0] / 255;
-  const g = 1 - rgb[1] / 255;
-  const b = 1 - rgb[2] / 255;
+  let r;
+  let g;
+  let b;
+
+  if (!rgb) {
+    const expected = document.querySelector('#expected');
+
+    let expectedValue = expected.style.color;
+    expectedValue = expectedValue.slice(
+      expectedValue.indexOf('(') + 1,
+      expectedValue.indexOf(')')
+    );
+    rgb = expectedValue.split(', ').map((item) => parseInt(item));
+  }
+
+  r = 1 - rgb[0] / 255;
+  g = 1 - rgb[1] / 255;
+  b = 1 - rgb[2] / 255;
 
   const newData = {
     input: { ...randColor },
@@ -75,7 +91,6 @@ const setColor = () => {
 
   trainingData.push(newData);
   alert('Data added!');
-  trainData();
 };
 
 trainModel();

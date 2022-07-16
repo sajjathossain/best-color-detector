@@ -1,3 +1,10 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -90,10 +97,26 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+label {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
 input[type="color"] {
   margin: 10px 0;
   width: 150px;
-  height: 75px;
+  height: 35px;
   border: none;
   outline: none;
 }

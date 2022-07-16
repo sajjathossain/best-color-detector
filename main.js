@@ -11,7 +11,10 @@ document.querySelector('#app').innerHTML = `
       <button id="get-btn">Get Color</button>
       <button id="set-btn">Set Color</button>
     </div>
-    <div class="inputs">
-      <input type="color" id="color-picker" />
+    <div id="inputs">
+      <div class="input">
+        <label for="color-picker">Pick color: </label>
+        <input type="color" id="color-picker" />
+      </div>
     </div>
 `;

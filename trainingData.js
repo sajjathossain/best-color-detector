@@ -1,4 +1,4 @@
-export const trainingData = [
+export const trainingDataOld = [
   {
     input: {
       r: 0,
