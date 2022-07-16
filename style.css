@@ -98,8 +98,10 @@ button:focus-visible {
 }
 
 #inputs {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
+  pointer-events: none;
 }
 
 .input {
@@ -115,10 +117,17 @@ label {
 
 input[type="color"] {
   margin: 10px 0;
+  padding: 0;
   width: 150px;
-  height: 35px;
+  height: 40px;
   border: none;
   outline: none;
+}
+
+#figure {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 @media (prefers-color-scheme: light) {
