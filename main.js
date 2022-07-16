@@ -19,6 +19,6 @@ document.querySelector('#app').innerHTML = `
   </div>
   <div id="figure">
     <div id="diagram"></div>
-    <h4 text-align="center">Fig: diagram </h4>
+    <h4 text-align="center">Fig: Neuron Connections </h4>
   </div>
 `;
