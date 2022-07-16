@@ -105,3 +105,4 @@ document.querySelector('#color-picker').addEventListener('input', (e) => {
   document.querySelector('#expected').style.color = colorValue;
   rgb = hexToRgb(colorValue);
 });
+document.querySelector('#diagram').innerHTML = brain.utilities.toSVG(net);
